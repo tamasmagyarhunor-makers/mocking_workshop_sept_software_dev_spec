@@ -32,6 +32,22 @@ describe('Weather class', () => {
     expect(actual).toBe(expected);
   });
 
+  it('should return success == true when API works correctly', () => {
+    jest.spyOn(Weather, 'freshWeatherForCity').mockReturnValue(
+        {
+            "success": true, 
+            "data": {
+                "city": "London",
+                "temperature": 30
+            }
+        }
+    )
+    const actual = Weather.freshWeatherForCity('London').success;
+    const expected = true;
+
+    expect(actual).toBe(expected);
+  })
+
 //   it('should return "rain" with a 20% chance of rain', () => {
 //     const actual = Weather.today();
 //     const expected = 'rain';
